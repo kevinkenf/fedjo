@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" xml:lang="en" class="firefox firefox49" lang="en-US"><head>
+    <!--
+    Created by Artisteer v3.1.0.48375
+    Base template (without user's data) checked by http://validator.w3.org : "This page is valid XHTML 1.0 Transitional"
+    -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="test_files/style.css" type="text/css" media="screen">
+    <!--[if IE 6]><link rel="stylesheet" href="style.ie6.css" type="text/css" media="screen" /><![endif]-->
+    <!--[if IE 7]><link rel="stylesheet" href="style.ie7.css" type="text/css" media="screen" /><![endif]-->
+    <link rel="stylesheet" type="text/css" href="test_files/jquery.css" media="screen">
+    
+    <style type="text/css">
+		.post .layout-item-0 
+		{ 
+			padding: 0px; 
+		}
+		.ie7 .post .layout-cell 
+		{
+			border:none !important; 
+			padding:0 !important; 
+		}
+		.ie6 .post .layout-cell 
+		{
+			border:none !important; 
+			padding:0 !important; 
+		}
+    </style>
+     <script type="text/javascript" src="test_files/jquery-1.js"></script>
+	<script type="text/javascript" src="test_files/script.js"></script>
+    <script src="test_files/AC_RunActiveContent.js" type="text/javascript"></script>
+    <style type="text/css">@import "js/jquery.countdown.css";</style>
+    <script type="text/javascript" src="test_files/jquery_003.js"></script>
+    <script type="text/javascript" src="test_files/jquery.js"></script>
+    <script type="text/javascript" src="test_files/jquery_002.js"></script>
+     
+    <script type="text/javascript">
+		$(document).ready(function() {
+			var austDay = new Date();
+			austDay = new Date(austDay.getFullYear(), 12-1, 31);
+			$('#defaultCountdown').countdown({until: austDay});
+			$('#year').text(austDay.getFullYear());
+		});
+	</script>
+     <script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+			$('.fancybox').fancybox();
+
+			/*
+			 *  Different effects
+			 */
+
+			// Change title type, overlay closing speed
+			$(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'outside'
+					},
+					overlay : {
+						speedOut : 0
+					}
+				}
+			});
+
+			// Disable opening and closing animations, change title type
+			$(".fancybox-effects-b").fancybox({
+				openEffect  : 'none',
+				closeEffect	: 'none',
+
+				helpers : {
+					title : {
+						type : 'over'
+					}
+				}
+			});
+
+			// Set custom style, close if clicked, change title type and overlay color
+			$(".fancybox-effects-c").fancybox({
+				wrapCSS    : 'fancybox-custom',
+				closeClick : true,
+
+				openEffect : 'none',
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					overlay : {
+						css : {
+							'background' : 'rgba(238,238,238,0.85)'
+						}
+					}
+				}
+			});
+
+			// Remove padding, set opening and closing animations, close if clicked and disable overlay
+			$(".fancybox-effects-d").fancybox({
+				padding: 0,
+
+				openEffect : 'elastic',
+				openSpeed  : 150,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 150,
+
+				closeClick : true,
+
+				helpers : {
+					overlay : null
+				}
+			});
+
+			/*
+			 *  Button helper. Disable animations, hide close button, change title type and content
+			 */
+
+			$('.fancybox-buttons').fancybox({
+				openEffect  : 'none',
+				closeEffect : 'none',
+
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					buttons	: {}
+				},
+
+				afterLoad : function() {
+					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+				}
+			});
+
+
+			/*
+			 *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+			 */
+
+			$('.fancybox-thumbs').fancybox({
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+				arrows    : false,
+				nextClick : true,
+
+				helpers : {
+					thumbs : {
+						width  : 50,
+						height : 50
+					}
+				}
+			});
+
+			/*
+			 *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+			*/
+			$('.fancybox-media')
+				.attr('rel', 'media-gallery')
+				.fancybox({
+					openEffect : 'none',
+					closeEffect : 'none',
+					prevEffect : 'none',
+					nextEffect : 'none',
+
+					arrows : false,
+					helpers : {
+						media : {},
+						buttons : {}
+					}
+				});
+
+			/*
+			 *  Open manually
+			 */
+
+			$("#fancybox-manual-a").click(function() {
+				$.fancybox.open('1_b.jpg');
+			});
+
+			$("#fancybox-manual-b").click(function() {
+				$.fancybox.open({
+					href : 'iframe.html',
+					type : 'iframe',
+					padding : 5
+				});
+			});
+
+			$("#fancybox-manual-c").click(function() {
+				$.fancybox.open([
+					{
+						href : '1_b.jpg',
+						title : 'My title'
+					}, {
+						href : '2_b.jpg',
+						title : '2nd title'
+					}, {
+						href : '3_b.jpg'
+					}
+				], {
+					helpers : {
+						thumbs : {
+							width: 75,
+							height: 50
+						}
+					}
+				});
+			});
+		});
+	</script>
+	<style type="text/css">
+		.fancybox-custom .fancybox-skin {
+			box-shadow: 0 0 50px #222;
+		}
+	</style>
+
+</head>
+<body>
+<div id="main">
+    <div class="cleared reset-box"></div>
+    <div class="box sheet">
+        <div class="box-body sheet-body">
+<div class="bar nav">
+<div class="nav-outer">
+	<div class="nav-center">
+	<ul class="hmenu">
+		<li>
+			<a href="http://carineflora-johnson.com/home.html" class="active">Home</a>
+		</li>	
+		<li>
+			<a href="#">Le Couple</a>
+			<ul>
+				<li>
+                    <a href="http://carineflora-johnson.com/home/carine.html">Carine</a>
+
+                </li>
+				<li>
+                    <a href="http://carineflora-johnson.com/home/johnson.html">Johnson</a>
+
+                </li>
+				<li>
+                    <a href="http://carineflora-johnson.com/home/la-rencontre.html">La Rencontre</a>
+
+                </li>
+			</ul>
+		</li>	
+		<li>
+			<a href="#">Les Familles</a>
+			<ul>
+				<li>
+                    <a href="http://carineflora-johnson.com/les-familles/famille-de-la-mariee.html">Famille de la Mariée</a>
+
+                </li>
+				<li>
+                    <a href="http://carineflora-johnson.com/les-familles/famille-du-marie.html">Famille du Marié</a>
+
+                </li>
+				<li>
+                    <a href="http://carineflora-johnson.com/les-familles/les-proches.html">Les Proches</a>
+
+                </li>
+			</ul>
+		</li>	
+		<li>
+			<a href="#">Le Mariage</a>
+			<ul>
+				<li>
+                    <a href="http://carineflora-johnson.com/le-mariage/lassise-coutumiere.html">L'Assise Coutumière</a>
+
+                </li>
+				<li>
+                    <a href="http://carineflora-johnson.com/le-mariage/la-mairie.html">La Mairie</a>
+
+                </li>
+				<li>
+                    <a href="http://carineflora-johnson.com/le-mariage/leglise.html">L'Église</a>
+
+                </li>
+				<li>
+                    <a href="http://carineflora-johnson.com/le-mariage/la-soiree.html">La Soirée</a>
+
+                </li>
+			</ul>
+		</li>
+		<li>
+			<a href="http://carineflora-johnson.com/livre-dor.html">Livre d'Or</a>
+		</li>
+         <li>
+            <a href="http://carineflora-johnson.com/tofs/index.html">Photos</a>
+		</li>	
+		<li>
+            <a href="http://carineflora-johnson.com/arwin/arwin.html">Arwin</a>
+		</li>	
+
+        
+	</ul>
+	</div>
+</div>
+</div>
+<div class="cleared reset-box"></div>
+<div class="header">
+                <div class="logo">
+                                                                        </div>
+                
+            </div>
+            <div class="cleared reset-box"></div>
+            <div class="layout-wrapper">
+                <div class="content-layout">
+                    <div class="content-layout-row">
+                        <div class="layout-cell content">
+<div class="box post">
+    <div class="box-body post-body">
+<div class="post-inner article">
+                                <div class="postcontent">
+<div class="content-layout">
+    <div class="content-layout-row">
+    <div class="layout-cell layout-item-0" style="width: 100%;">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                                               
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div id="myTable">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<table width="100%">
+        	<tbody><tr>
+            	<td width="48%">La&nbsp; Famille Saatekapi&nbsp; à&nbsp;  Bamendou<br>
+                    La Famille  Fapong&nbsp; à&nbsp;  Bamendou<br>
+                    Mr et Mme  Nouboussi&nbsp; à Yaoundé</td>
+                <td width="14%"></td>
+                <td width="38%" align="right">                 La  Famille Money Ngatcha à Kumba<br>
+                La Famille Keponme&nbsp; à&nbsp;  Bangou<br>
+                Mr&nbsp; et Mme Tchandjou&nbsp; à Bafoussam</td>
+            </tr>
+            <tr>
+            	<td colspan="3" align="center"> <p align="center">Sont&nbsp; heureux de vous faire part&nbsp; du mariage de leurs enfants
+        </p>
+            	  <p align="center"><strong><em>Carine Flora&nbsp;  Djamen Tchandjou</em></strong> et <strong><em>Johnson Fapong Nouboussi</em></strong>.</p>
+            	  <p align="center"> Qui sera célébré le lundi 31 décembre 2012 à  Yaoundé</p></td>
+            </tr>
+        </tbody></table>
+        </div>
+         <center><p><a class="fancybox" href="http://carineflora-johnson.com/images/MrEtMadame.jpg" data-fancybox-group="gallery" title="Carine et Johnson"><img src="test_files/MrEtMadame.jpg" width="540" height="400"></a><br>
+    (pour agrandir, cliquer sur la photo)
+   
+                                    <br><br>
+                                </p>
+                            </center>
+        <p></p>
+    </div>
+    </div>
+</div>
+
+                </div>
+                <div class="cleared"></div>
+                </div>
+
+		<div class="cleared"></div>
+    </div>
+</div>
+
+                          <div class="cleared"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cleared"></div>
+            <div class="footer">
+                <div class="footer-body">
+      <div class="footer-text">
+            <table width="100%">
+            	<tbody><tr>
+                  <td width="54%"><script type="text/javascript">
+                        AC_FL_RunContent( 'type','application/x-shockwave-flash','data','dewplayer-multi.swf?mp3=mp3/MarryYou.mp3&autostart=1&autoreplay=1&volume=50','width','235','height','20','bgcolor','#99cccc','id','dewplayer-multi','movie','dewplayer-multi?mp3=mp3/MarryYou.mp3&autostart=1&autoreplay=1&volume=50','flashvars','mp3=mp3/MarryYou.mp3' ); //end AC code
+                        </script><embed data="dewplayer-multi.swf?mp3=mp3/MarryYou.mp3&amp;autostart=1&amp;autoreplay=1&amp;volume=50" bgcolor="#99cccc" src="test_files/dewplayer-multi.swf" flashvars="mp3=mp3/MarryYou.mp3" type="application/x-shockwave-flash" width="235" height="20"> 
+                        <noscript>
+                        <object type="application/x-shockwave-flash" data="dewplayer-multi.swf?mp3=mp3/MarryYou.mp3&autostart=1&autoreplay=1&volume=50" width="235" height="20" bgcolor="#99cccc" id="dewplayer-multi">
+                          <param name="movie"  wmode="transparent" value="dewplayer-multi.swf?mp3=/mp3/MarryYou.mp3&autostart=1&autoreplay=1&volume=50"/>
+                        </object>
+                        </noscript>
+                    </td>
+                    <td width="46%"></td>
+              </tr>
+            </tbody></table>
+                                <p>© 2012, CarineFlora &amp; Johnson. All Rights Reserved.</p>
+                                                            </div>
+                    <div class="cleared"></div>
+                </div>
+          </div>
+    		<div class="cleared"></div>
+        </div>
+    </div>
+    <div class="cleared"></div>
+    <p class="page-footer"><a href="http://www.artisteer.com/?p=website_templates" target="_blank">Website Template</a> created with Artisteer by Olivier Amougou.</p>
+    <div class="cleared"></div>
+</div>
+
+
+
+</body></html>
